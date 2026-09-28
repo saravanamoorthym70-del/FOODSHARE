@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f8f2">
+    <link rel="icon" href="data:,">
+    <title>FoodShare | Surplus food, shared locally</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/app.js" defer></script>
+</head>
+<body>
+<div class="app-shell">
+    <header class="navbar">
+        <a class="navbar-brand" href="#dashboard" aria-label="FoodShare home">
+            <span class="brand-mark" aria-hidden="true">FS</span>
+            <span class="brand-name">food<span>share</span></span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+            <button class="active" type="button" data-view="dashboard">Overview</button>
+            <button type="button" data-view="listings">Food listings</button>
+            <button type="button" data-view="partners">Partners</button>
+            <button type="button" data-view="reports">Monthly impact</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <p id="connection-note" class="connection-note" role="alert" hidden></p>
+
+        <section class="view-panel" id="dashboard-view" aria-labelledby="dashboard-title">
+            <div class="page-header">
+                <div>
+                    <p class="eyebrow">Local food network</p>
+                    <h1 id="dashboard-title">Good food, going further.</h1>
+                    <p>Bring surplus meals from campus kitchens to the people and shelters who can use them.</p>
+                </div>
+                <button class="btn btn-primary" type="button" data-open="listing-modal">+ Share surplus</button>
+            </div>
+
+            <div class="welcome-strip">
+                <div>
+                    <p class="welcome-mark">Today, nearby</p>
+                    <h2>Make the end of service a new beginning.</h2>
+                    <p>Post a safe-to-eat window, find a local NGO, and coordinate collection.</p>
+                </div>
+                <button class="btn btn-accent" type="button" data-open="donor-modal">Register a donor</button>
+            </div>
+
+            <div class="stats-grid" aria-label="FoodShare activity">
+                <article class="stat-card"><span class="stat-icon green" aria-hidden="true">+</span><div class="stat-info"><h3 id="stat-available">0</h3><p>Available listings</p></div></article>
+                <article class="stat-card"><span class="stat-icon blue" aria-hidden="true">↗</span><div class="stat-info"><h3 id="stat-claims">0</h3><p>Pickups in progress</p></div></article>
+                <article class="stat-card"><span class="stat-icon orange" aria-hidden="true">◎</span><div class="stat-info"><h3 id="stat-partners">0</h3><p>Community partners</p></div></article>
+                <article class="stat-card"><span class="stat-icon red" aria-hidden="true">✓</span><div class="stat-info"><h3 id="stat-diverted">0</h3><p>Quantity saved this month</p></div></article>
+            </div>
+
+            <div class="content-grid">
+                <section class="workspace-panel" aria-labelledby="featured-title">
+                    <div class="panel-heading">
+                        <div><h2 id="featured-title">Ready to be shared</h2><p>Fresh listings still within their safe-to-eat window</p></div>
+                        <button class="text-button" type="button" data-view="listings">All listings &rarr;</button>
+                    </div>
+                    <div class="listing-grid" id="dashboard-listings"></div>
+                </section>
+                <section class="workspace-panel" aria-labelledby="pickup-title">
+                    <div class="panel-heading">
+                        <div><h2 id="pickup-title">Pickup board</h2><p>Active claims waiting for collection</p></div>
+                    </div>
+                    <div class="claim-list" id="dashboard-claims"></div>
+                </section>
+            </div>
+        </section>
+
+        <section class="view-panel" id="listings-view" aria-labelledby="listings-title" hidden>
+            <div class="page-header">
+                <div><p class="eyebrow">Browse and manage</p><h1 id="listings-title">Food listings</h1><p>Filter available donations and follow each listing through collection.</p></div>
+                <button class="btn btn-primary" type="button" data-open="listing-modal">+ Share surplus</button>
+            </div>
+            <section class="workspace-panel">
+                <div class="toolbar">
+                    <div class="toolbar-controls">
+                        <input id="listing-search" type="search" placeholder="Search food or location" aria-label="Search listings">
+                        <select id="listing-filter" aria-label="Filter listings">
+                            <option value="ALL">All statuses</option>
+                            <option value="AVAILABLE">Available</option>
+                            <option value="CLAIMED">Claimed</option>
+                            <option value="COLLECTED">Collected</option>
+                            <option value="EXPIRED">Expired</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-accent" type="button" data-open="ngo-modal">Register an NGO</button>
+                </div>
+                <div class="listing-grid" id="listing-grid"></div>
+            </section>
+        </section>
+
+        <section class="view-panel" id="partners-view" aria-labelledby="partners-title" hidden>
+            <div class="page-header">
+                <div><p class="eyebrow">People making it happen</p><h1 id="partners-title">Community partners</h1><p>Manage the kitchens donating food and the organizations collecting it.</p></div>
+                <div class="action-btns"><button class="btn btn-outline" type="button" data-open="donor-modal">+ Add donor</button><button class="btn btn-primary" type="button" data-open="ngo-modal">+ Add NGO</button></div>
+            </div>
+            <div class="partner-grid">
+                <section class="workspace-panel" aria-labelledby="donors-title"><div class="panel-heading"><div><h2 id="donors-title">Food donors</h2><p>Campus kitchens, caterers, and event teams</p></div></div><div class="partner-list" id="donor-list"></div></section>
+                <section class="workspace-panel" aria-labelledby="ngos-title"><div class="panel-heading"><div><h2 id="ngos-title">NGO partners</h2><p>Local shelters and community organizations</p></div></div><div class="partner-list" id="ngo-list"></div></section>
+            </div>
+        </section>
+
+        <section class="view-panel" id="reports-view" aria-labelledby="reports-title" hidden>
+            <div class="page-header"><div><p class="eyebrow">Measure what we save</p><h1 id="reports-title">Monthly impact</h1><p>See collected donations and the quantity diverted from waste.</p></div></div>
+            <section class="workspace-panel report-result">
+                <div class="report-controls">
+                    <label for="report-month">Report month<input id="report-month" type="month"></label>
+                    <button class="btn btn-primary" id="load-report" type="button">View report</button>
+                </div>
+                <div id="report-content" aria-live="polite"></div>
+            </section>
+        </section>
+    </main>
+</div>
+
+<dialog class="modal" id="donor-modal" aria-labelledby="donor-modal-title">
+    <form class="modal-inner" id="donor-form">
+        <div class="modal-heading"><div><p class="eyebrow">Food provider</p><h2 id="donor-modal-title">Register a donor</h2></div><button class="modal-close" type="button" data-close aria-label="Close">×</button></div>
+        <div class="form-grid">
+            <div class="form-group"><label for="donor-name">Contact name</label><input id="donor-name" name="name" maxlength="100" required></div>
+            <div class="form-group"><label for="donor-organization">Organization</label><input id="donor-organization" name="organization"></div>
+            <div class="form-group"><label for="donor-email">Email</label><input id="donor-email" name="email" type="email" required></div>
+            <div class="form-group"><label for="donor-phone">Phone</label><input id="donor-phone" name="phone" type="tel" required></div>
+            <div class="form-group" style="grid-column: 1 / -1"><label for="donor-address">Pickup address</label><input id="donor-address" name="address" required></div>
+        </div>
+        <div class="form-actions"><button class="btn btn-outline" type="button" data-close>Cancel</button><button class="btn btn-primary" type="submit">Save donor</button></div>
+    </form>
+</dialog>
+
+<dialog class="modal" id="ngo-modal" aria-labelledby="ngo-modal-title">
+    <form class="modal-inner" id="ngo-form">
+        <div class="modal-heading"><div><p class="eyebrow">Collection partner</p><h2 id="ngo-modal-title">Register an NGO</h2></div><button class="modal-close" type="button" data-close aria-label="Close">×</button></div>
+        <div class="form-grid">
+            <div class="form-group"><label for="ngo-name">Organization name</label><input id="ngo-name" name="name" maxlength="100" required></div>
+            <div class="form-group"><label for="ngo-registration">Registration number</label><input id="ngo-registration" name="registrationNumber" required></div>
+            <div class="form-group"><label for="ngo-email">Email</label><input id="ngo-email" name="email" type="email" required></div>
+            <div class="form-group"><label for="ngo-phone">Phone</label><input id="ngo-phone" name="phone" type="tel" required></div>
+            <div class="form-group" style="grid-column: 1 / -1"><label for="ngo-address">Address</label><input id="ngo-address" name="address" required></div>
+        </div>
+        <div class="form-actions"><button class="btn btn-outline" type="button" data-close>Cancel</button><button class="btn btn-primary" type="submit">Save NGO</button></div>
+    </form>
+</dialog>
+
+<dialog class="modal" id="listing-modal" aria-labelledby="listing-modal-title">
+    <form class="modal-inner" id="listing-form">
+        <div class="modal-heading"><div><p class="eyebrow">Give good food another stop</p><h2 id="listing-modal-title">Share surplus food</h2></div><button class="modal-close" type="button" data-close aria-label="Close">×</button></div>
+        <div class="form-group"><label for="listing-donor">Donor</label><select id="listing-donor" name="donorId" required></select></div>
+        <div class="form-grid">
+            <div class="form-group"><label for="food-name">Food name</label><input id="food-name" name="foodName" required></div>
+            <div class="form-group"><label for="food-type">Food type</label><select id="food-type" name="foodType" required><option value="">Choose type</option><option>Prepared meals</option><option>Bakery</option><option>Produce</option><option>Dairy</option><option>Packaged food</option><option>Other</option></select></div>
+            <div class="form-group"><label for="food-quantity">Quantity</label><input id="food-quantity" name="quantity" type="number" min="0.01" step="0.01" required></div>
+            <div class="form-group"><label for="food-unit">Unit</label><select id="food-unit" name="unit" required><option>kg</option><option>portions</option><option>items</option><option>boxes</option><option>litres</option></select></div>
+            <div class="form-group" style="grid-column: 1 / -1"><label for="safe-until">Safe to eat until</label><input id="safe-until" name="safeToEatUntil" type="datetime-local" required></div>
+            <div class="form-group" style="grid-column: 1 / -1"><label for="food-description">Pickup notes</label><textarea id="food-description" name="description" rows="3" placeholder="Storage, pickup entrance, or other helpful details"></textarea></div>
+        </div>
+        <p class="form-note">Listings automatically expire when the safe-to-eat time passes.</p>
+        <div class="form-actions"><button class="btn btn-outline" type="button" data-close>Cancel</button><button class="btn btn-primary" type="submit">Publish listing</button></div>
+    </form>
+</dialog>
+
+<div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

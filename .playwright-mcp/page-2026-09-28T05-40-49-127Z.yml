@@ -1,0 +1,33 @@
+- generic [ref=f1e2]:
+  - banner [ref=f1e3]:
+    - link "FoodShare home" [ref=f1e4] [cursor=pointer]:
+      - /url: "#dashboard"
+      - generic [aria-hidden] [ref=f1e5]: FS
+      - generic [ref=f1e6]: foodshare
+    - navigation "Main navigation" [ref=f1e7]:
+      - button "Overview" [ref=f1e8] [cursor=pointer]
+      - button "Food listings" [active] [ref=f1e9] [cursor=pointer]
+      - button "Partners" [ref=f1e10] [cursor=pointer]
+      - button "Monthly impact" [ref=f1e11] [cursor=pointer]
+  - main [ref=f1e12]:
+    - region [ref=f1e67]:
+      - generic [ref=f1e68]:
+        - generic [ref=f1e69]:
+          - paragraph [ref=f1e70]: Browse and manage
+          - heading "Food listings" [level=1] [ref=f1e71]
+          - paragraph [ref=f1e72]: Filter available donations and follow each listing through collection.
+        - button "+ Share surplus" [ref=f1e73] [cursor=pointer]
+      - generic [ref=f1e74]:
+        - generic [ref=f1e75]:
+          - generic [ref=f1e76]:
+            - searchbox "Search listings" [ref=f1e77]
+            - combobox "Filter listings" [ref=f1e78]:
+              - option "All statuses" [selected]
+              - option "Available"
+              - option "Claimed"
+              - option "Collected"
+              - option "Expired"
+          - button "Register an NGO" [ref=f1e79] [cursor=pointer]
+        - generic [ref=f1e81]:
+          - generic [aria-hidden] [ref=f1e82]: ○
+          - paragraph [ref=f1e83]: No listings match these filters.

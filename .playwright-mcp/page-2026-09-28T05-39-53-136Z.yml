@@ -1,0 +1,57 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link "FoodShare home" [ref=e4] [cursor=pointer]:
+      - /url: "#dashboard"
+      - generic [aria-hidden] [ref=e5]: FS
+      - generic [ref=e6]: foodshare
+    - navigation "Main navigation" [ref=e7]:
+      - button "Overview" [ref=e8] [cursor=pointer]
+      - button "Food listings" [ref=e9] [cursor=pointer]
+      - button "Partners" [ref=e10] [cursor=pointer]
+      - button "Monthly impact" [ref=e11] [cursor=pointer]
+  - main [ref=e12]:
+    - region [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - paragraph [ref=e16]: Local food network
+          - heading "Good food, going further." [level=1] [ref=e17]
+          - paragraph [ref=e18]: Bring surplus meals from campus kitchens to the people and shelters who can use them.
+        - button "+ Share surplus" [ref=e19] [cursor=pointer]
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - paragraph [ref=e22]: Today, nearby
+          - heading "Make the end of service a new beginning." [level=2] [ref=e23]
+          - paragraph [ref=e24]: Post a safe-to-eat window, find a local NGO, and coordinate collection.
+        - button "Register a donor" [ref=e25] [cursor=pointer]
+      - generic "FoodShare activity" [ref=e26]:
+        - article [ref=e27]:
+          - generic [aria-hidden] [ref=e28]: +
+          - generic [ref=e29]:
+            - heading "0" [level=3] [ref=e30]
+            - paragraph [ref=e31]: Available listings
+        - article [ref=e32]:
+          - generic [aria-hidden] [ref=e33]: ↗
+          - generic [ref=e34]:
+            - heading "0" [level=3] [ref=e35]
+            - paragraph [ref=e36]: Pickups in progress
+        - article [ref=e37]:
+          - generic [aria-hidden] [ref=e38]: ◎
+          - generic [ref=e39]:
+            - heading "0" [level=3] [ref=e40]
+            - paragraph [ref=e41]: Community partners
+        - article [ref=e42]:
+          - generic [aria-hidden] [ref=e43]: ✓
+          - generic [ref=e44]:
+            - heading "0" [level=3] [ref=e45]
+            - paragraph [ref=e46]: Quantity saved this month
+      - generic [ref=e47]:
+        - region [ref=e48]:
+          - generic [ref=e49]:
+            - generic [ref=e50]:
+              - heading "Ready to be shared" [level=2] [ref=e51]
+              - paragraph [ref=e52]: Fresh listings still within their safe-to-eat window
+            - button "All listings →" [ref=e53] [cursor=pointer]
+        - region [ref=e54]:
+          - generic [ref=e56]:
+            - heading "Pickup board" [level=2] [ref=e57]
+            - paragraph [ref=e58]: Active claims waiting for collection
